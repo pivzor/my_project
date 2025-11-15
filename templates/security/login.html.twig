@@ -1,0 +1,20 @@
+{% extends 'base_admin_like.html.twig' %}
+
+{% block body %}
+<div class="admin-login-box">
+    <h1>Admin Login</h1>
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <form action="{{ path('login') }}" method="post">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <input type="text" name="_username" value="{{ last_username }}" placeholder="Username" class="form-control" required autofocus>
+        <input type="password" name="_password" placeholder="Password" class="form-control" required>
+
+        <button type="submit" class="btn-primary">Login</button>
+    </form>
+</div>
+{% endblock %}
